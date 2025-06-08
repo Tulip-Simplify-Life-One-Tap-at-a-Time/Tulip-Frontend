@@ -4,20 +4,22 @@
   color: #DFD0B8;
 }
 
-/* Navigation */
+/* Navigation - Updated Layout */
 .navbar {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* Changed from 1fr auto 1fr to auto 1fr auto */
   align-items: center;
   padding: 1.5rem 2rem;
   position: relative;
   z-index: 10;
+  width: 100%;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  justify-self: start;
 }
 
 .logo-icon {
@@ -32,6 +34,7 @@
 .nav-links {
   display: flex;
   gap: 2rem;
+  justify-self: center;
 }
 
 .nav-link {
@@ -61,6 +64,7 @@
 .nav-actions {
   display: flex;
   gap: 1rem;
+  justify-self: end;
 }
 
 .btn {

@@ -25,7 +25,7 @@ const Home = () => {
           <button 
             className="btn login"
             style={{ color: '#DFD0B8' }}
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/Login')}
           >
             Login
           </button>
@@ -35,7 +35,7 @@ const Home = () => {
               backgroundColor: '#DFD0B8',
               color: '#222831'
             }}
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate('/SignUp')}
           >
             Sign Up
           </button>
