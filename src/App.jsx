@@ -3,6 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from'./pages/Login';
 import SignUp from './pages/SignUp';
+import Dashboard from './pages/Dashboard';
+import Task from './pages/Task';
+
 
 
 function App() {
@@ -11,6 +14,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/SignUp" element={<SignUp />} />
+      <Route path="/Dashboard" element={<Dashboard/>} />
+      <Route path="/Task" element={<Task/>}/>
     </Routes>
   );
 }

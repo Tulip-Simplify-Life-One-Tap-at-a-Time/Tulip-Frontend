@@ -18,7 +18,7 @@ const Home = () => {
         <div className="nav-links">
           <a href="#" style={{ color: '#DFD0B8' }} className="nav-link">Home</a>
           <a href="#" style={{ color: '#DFD0B8' }} className="nav-link">About</a>
-          <a href="#" style={{ color: '#DFD0B8' }} className="nav-link">Features</a>
+          <a href="/Dashboard" style={{ color: '#DFD0B8' }} className="nav-link">Dashboard</a>
           <a href="#" style={{ color: '#DFD0B8' }} className="nav-link">Demo</a>
         </div>
         <div className="nav-actions">

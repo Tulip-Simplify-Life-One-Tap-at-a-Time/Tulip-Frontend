@@ -1,0 +1,341 @@
+/* Dashboard.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1F2933; /* Primary Background: Charcoal Blue */
+  color: #DFD0B8; /* Text (Primary): Warm Beige */
+  overflow-x: hidden; /* Prevent horizontal scroll due to sidebar animation */
+}
+
+/* --- Layout Zones --- */
+
+.top-nav-bar {
+  background-color: #1F2933; /* Top Nav Bar BG: Charcoal Blue */
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribute items with space between them */
+  border-bottom: 1px solid #3C4A52; /* Soft contrast separators */
+  position: sticky; /* Keep nav bar at the top */
+  top: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.sidebar-toggle-button {
+  background: none;
+  border: none;
+  color: #DFD0B8;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-right: 20px; /* Keep some space to the right of the button */
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-toggle-button:hover {
+  background-color: #3C4A52;
+}
+
+.dashboard-heading {
+  font-size: 2.5rem; /* Headings: 1.25rem+, bold */
+  font-weight: 700;
+  color: #DFD0B8; /* Text (Primary): Warm Beige */
+  margin: 0; /* Remove default margin */
+  /* Removed flex-grow and text-align: center as justify-content handles positioning now */
+}
+
+/* Home Button Styling */
+.home-button {
+  text-decoration: none;
+  color: #DFD0B8; /* Primary text color for visibility */
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 15px;
+  border: 1px solid #948979; /* Accent color for border */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  margin-left: 20px; /* Keep some space to the left of the button */
+}
+
+.home-button:hover {
+  background-color: #948979; /* Accent color on hover */
+  color: #1F2933; /* Darker text on hover */
+  border-color: #DFD0B8; /* Primary text color for border on hover */
+}
+
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures it takes full viewport height */
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+  background-color: #374151; /* Secondary Background: Dark Slate */
+  width: 250px;
+  min-width: 250px; /* Prevent it from shrinking */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%); /* Start hidden */
+  position: fixed; /* Fixed position to slide in */
+  height: 100%; /* Full height */
+  z-index: 999; /* Below top nav, above main content */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Slide in */
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #3C4A52;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #DFD0B8;
+}
+
+.sidebar-close-button {
+  background: none;
+  border: none;
+  color: #DFD0B8;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-close-button:hover {
+  background-color: #3C4A52;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 15px;
+}
+
+.sidebar-nav a {
+  text-decoration: none;
+  color: #B4A890;
+  font-size: 1.1rem;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-nav a:hover {
+  background-color: #2C353D;
+  color: #DFD0B8;
+}
+
+/* --- Main Dashboard Content Styling --- */
+.dashboard-main {
+  flex-grow: 1; /* Takes remaining space */
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  transition: margin-left 0.3s ease-in-out; /* Smooth shift when sidebar opens */
+}
+
+.dashboard-main.shifted {
+  margin-left: 250px; /* Shift content when sidebar is open */
+}
+
+.category {
+  background-color: #374151; /* Secondary Background: Dark Slate for cards/sidebars */
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #3C4A52; /* Border Color: Soft contrast separators */
+  flex: 1 1 calc(50% - 40px); /* Two columns layout: Adjust based on desired number of columns and gap */
+  min-width: 300px; /* Minimum width for categories before wrapping */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  display: flex; /* Use flexbox for category content */
+  flex-direction: column; /* Stack h2 and subcategories vertically */
+  align-items: center; /* Center content horizontally within category */
+  text-align: center; /* Center text within category */
+}
+
+.category h2 {
+  margin-top: 0;
+  font-size: 1.8rem; /* Headings: 1.25rem+, bold */
+  font-weight: 600;
+  color: #DFD0B8; /* Text (Primary): Warm Beige */
+  margin-bottom: 20px;
+}
+
+.subcategories {
+  display: flex;
+  justify-content: center; /* Center cards within subcategories */
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  gap: 20px;
+  padding: 10px 0;
+  width: 100%; /* Ensure subcategories take full width of their parent */
+}
+
+.card {
+  background-color: #2C353D; /* Input Background (used for cards now): Slight contrast */
+  border-radius: 10px;
+  padding: 20px;
+  min-width: 220px;
+  max-width: 250px; /* Limit max width for better appearance */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align: center;
+  border: 1px solid #3C4A52; /* Border Color: Soft contrast separators */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Slight lift */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-color: #948979; /* Accent Color: Muted Taupe on hover */
+}
+
+.card a {
+  text-decoration: none;
+  color: #B4A890; /* Text (Secondary): Soft Taupe for general text */
+  font-size: 1.1rem; /* Body Text: 1rem */
+  font-weight: 500;
+  display: block; /* Make the entire card clickable via the link */
+}
+
+.card a:hover {
+  color: #DFD0B8; /* Link Hover: Underlined or bold on hover (Text Primary) */
+  text-decoration: underline;
+}
+
+/* --- Scrollbar Styling for Subcategories --- */
+.subcategories::-webkit-scrollbar {
+  height: 8px;
+}
+
+.subcategories::-webkit-scrollbar-thumb {
+  background: #948979; /* Accent Color: Muted Taupe */
+  border-radius: 4px;
+}
+
+.subcategories::-webkit-scrollbar-track {
+  background: #374151; /* Secondary Background: Dark Slate */
+}
+
+/* --- Category Border Colors (using Accent Color for consistency) --- */
+.productivity { border-left: 5px solid #948979; }
+.finance { border-left: 5px solid #948979; }
+.career { border-left: 5px solid #948979; }
+.health { border-left: 5px solid #948979; }
+.home { border-left: 5px solid #948979; }
+.travel { border-left: 5px solid #948979; }
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 1200px) {
+  .dashboard-main.shifted {
+    margin-left: 0; /* Remove shift on smaller screens to prevent content overflow */
+  }
+}
+
+@media (max-width: 992px) {
+  .category {
+    flex: 1 1 calc(50% - 30px); /* Two columns on medium screens, adjusted gap */
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .dashboard-heading {
+    font-size: 2rem;
+  }
+
+  .category {
+    flex: 1 1 100%; /* Single column on small screens */
+    min-width: unset; /* Remove min-width for full flexibility */
+  }
+
+  .category h2 {
+    font-size: 1.5rem;
+  }
+
+  .subcategories {
+    flex-direction: row; /* Keep cards in a row for better flow */
+    overflow-x: auto; /* Enable horizontal scrolling for cards if they exceed container */
+    justify-content: flex-start; /* Align cards to the start for scrolling */
+    padding-bottom: 10px; /* Add some padding for the scrollbar */
+  }
+
+  .card {
+    min-width: 200px; /* Ensure cards are still readable */
+    max-width: 250px;
+  }
+
+  .sidebar {
+    width: 200px; /* Adjust sidebar width for smaller screens */
+    min-width: 200px;
+  }
+
+  .dashboard-main.shifted {
+    margin-left: 0; /* Ensure content is not shifted */
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-heading {
+    font-size: 1.8rem;
+  }
+
+  .category {
+    padding: 15px;
+  }
+
+  .category h2 {
+    font-size: 1.3rem;
+  }
+
+  .card {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .sidebar-toggle-button {
+    font-size: 1.5rem; /* Smaller button on very small screens */
+  }
+
+  .home-button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
