@@ -1,0 +1,375 @@
+/* Elegant Dark-Neutral Theme CSS - Tulip-Aligned */
+
+/* Body and Background */
+.streaks-container {
+  font-family: 'Inter', 'DM Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #1B1F23; /* Deep Charcoal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-y: auto;
+  position: relative;
+  color: #DFD0B8; /* Warm Beige */
+}
+
+/* Floating Clouds with Dark Theme */
+.cloud {
+  position: absolute;
+  background: #393E46; /* Subtle boundary contrast */
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: float 10s infinite linear;
+}
+
+.cloud::before, 
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: #2C3137; /* Slightly lighter slate */
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 60px;
+  height: 60px;
+  top: -20px;
+  left: 20px;
+}
+
+.cloud::after {
+  width: 40px;
+  height: 40px;
+  top: -10px;
+  right: 20px;
+}
+
+.cloud-1 {
+  top: 10%;
+  left: -100px;
+  width: 80px;
+  height: 40px;
+}
+
+.cloud-2 {
+  top: 30%;
+  left: -150px;
+  width: 100px;
+  height: 50px;
+  animation-duration: 15s;
+}
+
+.cloud-3 {
+  top: 50%;
+  left: -200px;
+  width: 120px;
+  height: 60px;
+  animation-duration: 20s;
+}
+
+.cloud-4 {
+  top: 70%;
+  left: -250px;
+  width: 90px;
+  height: 45px;
+  animation-duration: 12s;
+}
+
+@keyframes float {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+/* Headings */
+.main-title,
+.section-title {
+  text-align: center;
+  color: #DFD0B8; /* Warm Beige */
+  font-weight: 700;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin: 2rem 0 1rem 0;
+  font-weight: 600;
+}
+
+/* Streak Cards */
+.streak-card {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px 0;
+  padding: 20px;
+  background: #222831; /* Tulip Dark Charcoal */
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #393E46; /* Subtle boundary contrast */
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.streak-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #2C3137; /* Slightly lighter slate */
+  border-radius: 15px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.streak-card:hover::before {
+  opacity: 0.5;
+}
+
+.streak-card:hover {
+  transform: scale(1.02);
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+.habits-table,
+.mood-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #222831; /* Tulip Dark Charcoal */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.habits-table th,
+.habits-table td,
+.mood-table th,
+.mood-table td {
+  border: 1px solid #393E46; /* Subtle boundary contrast */
+  padding: 10px;
+  text-align: center;
+  color: #DFD0B8; /* Warm Beige */
+}
+
+.habits-table th,
+.mood-table th {
+  background: #2C3137; /* Slightly lighter slate */
+  font-weight: 600;
+  color: #DFD0B8; /* Warm Beige */
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.habit-name {
+  color: #948979; /* Muted Taupe */
+  font-weight: 600;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100px;
+  height: 12px;
+  background: #393E46; /* Subtle boundary contrast */
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  border-radius: 6px;
+  transition: width 0.5s ease;
+  background: #948979; /* Muted Taupe */
+}
+
+/* Buttons */
+.add-button {
+  background: #393E46; /* Subtle boundary contrast */
+  color: #DFD0B8; /* Warm Beige */
+  border: 1px solid #4D5B66; /* Cool deep gray-blue */
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-button:hover {
+  background: #4B515A;
+  color: #DFD0B8; /* Warm Beige */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.add-button:active {
+  transform: translateY(0);
+}
+
+/* Input Groups */
+.input-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.input-group input {
+  padding: 12px 16px;
+  border: 1px solid #393E46; /* Subtle boundary contrast */
+  border-radius: 10px;
+  background: #1B1F23; /* Deep Charcoal */
+  flex: 1;
+  min-width: 200px;
+  color: #DFD0B8; /* Warm Beige */
+  transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+  color: #948979; /* Muted Taupe */
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4D5B66; /* Cool deep gray-blue */
+  background: #222831; /* Tulip Dark Charcoal */
+}
+
+.mood-inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .mood-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-height: 100px;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.day-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #948979; /* Muted Taupe */
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.day-checkbox:hover {
+  color: #DFD0B8; /* Warm Beige */
+  transform: scale(1.05);
+}
+
+.day-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #5E6B75; /* Desaturated steel */
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+/* Progress Summary */
+.progress-summary p {
+  margin: 15px 0;
+  font-size: 1.1rem;
+  color: #DFD0B8; /* Warm Beige */
+}
+
+.highlight-text {
+  color: #4D5B66; /* Cool deep gray-blue */
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* Summary Card */
+.summary-card p {
+  margin: 15px 0;
+  font-size: 1.1rem;
+  color: #DFD0B8; /* Warm Beige */
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .streaks-container {
+    padding: 10px;
+  }
+  
+  .streak-card {
+    width: 95%;
+    padding: 15px;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .checkbox-group {
+    max-height: 80px;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1B1F23; /* Deep Charcoal */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #393E46; /* Subtle boundary contrast */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5E6B75; /* Desaturated steel */
+}
+
+/* Success and Fail States */
+.success-glow {
+  box-shadow: 0 0 15px rgba(94, 107, 117, 0.3) !important; /* Desaturated steel */
+}
+
+.fail-glow {
+  box-shadow: 0 0 15px rgba(107, 78, 78, 0.3) !important; /* Muted maroon */
+}
