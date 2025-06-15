@@ -1,14 +1,9 @@
 // Dashboard.js
-import React, { useState } from 'react';
+import React from 'react';
 import './Dashboard.css';
 import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
   return (
     <>
       <Navbar 
@@ -17,39 +12,11 @@ const Dashboard = () => {
         transparent={false}
         position="fixed"
       />
-      <div className="dashboard-container" style={{ paddingTop: '80px' }}>
-        {/* Top Navigation Bar */}
+      <div className="dashboard-container" style={{ paddingTop: '80px' }}>        {/* Top Navigation Bar */}
         <nav className="top-nav-bar">
-        <button className="sidebar-toggle-button" onClick={toggleSidebar}>
-          ☰ {/* Hamburger icon */}
-        </button>
         <h1 className="dashboard-heading">My Dashboard</h1>
-        {/* Home Button */}
-        <a href="/" className="home-button">Home</a> {/* Added Home button */}
-      </nav>
-
-      <div className="main-content-wrapper">
-        {/* Collapsible Sidebar */}
-        <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-          <div className="sidebar-header">
-            <h2>Categories</h2>
-            <button className="sidebar-close-button" onClick={toggleSidebar}>
-              &times; {/* Close icon */}
-            </button>
-          </div>
-          <nav className="sidebar-nav">
-            <ul>
-              <li><a href="#productivity" onClick={toggleSidebar}>🚀 Productivity & Organization</a></li>
-              <li><a href="#finance" onClick={toggleSidebar}>💰 Finance & Money Management</a></li>
-              <li><a href="#career" onClick={toggleSidebar}>📈 Career & Professional Growth</a></li>
-              <li><a href="#health" onClick={toggleSidebar}>🏋️ Health & Wellness</a></li>
-              <li><a href="#home" onClick={toggleSidebar}>🏠 Home & Life Skills</a></li>
-              <li><a href="#travel" onClick={toggleSidebar}>✈️ Travel & Transportation</a></li>
-            </ul>
-          </nav>
-        </aside>
-
-        <div className={`dashboard-main ${isSidebarOpen ? 'shifted' : ''}`}>
+      </nav>      <div className="main-content-wrapper">
+        <div className="dashboard-main">
           {/* Productivity & Organization */}
           <div className="category productivity" id="productivity">
             <h2>🚀 Productivity & Organization</h2>
