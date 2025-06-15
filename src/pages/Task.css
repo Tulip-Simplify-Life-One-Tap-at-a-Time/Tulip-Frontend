@@ -7,7 +7,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px); /* Account for navbar height */
 }
 
 .header-section {
@@ -334,4 +334,33 @@
   z-index: 1000;
   opacity: 1;
   transition: opacity 0.5s;
+}
+
+/* Responsive adjustments for navbar spacing */
+@media (max-width: 768px) {
+  .task-tamer-container {
+    min-height: calc(100vh - 70px); /* Adjust for smaller navbar on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .task-tamer-container {
+    min-height: calc(100vh - 60px); /* Further adjust for very small screens */
+    padding: 15px; /* Reduce padding on very small screens */
+  }
+  
+  .header-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .app-title {
+    order: -1; /* Move title to top on mobile */
+    margin-bottom: 15px;
+  }
+  
+  .date-box, .progress-section {
+    width: 100%;
+    max-width: 300px;
+  }
 }
