@@ -6,27 +6,28 @@ import Navbar from '../components/Navbar';
 import Silk from './Silk';
 
 const Home = () => {
-  const navigate = useNavigate();
-  return (
+  const navigate = useNavigate();  return (
     <div className="home-container" style={{ backgroundColor: '#222831' }}>
+      {/* Silk Background for entire page */}
+      <div className="silk-background">
+        <Silk
+          speed={5}
+          scale={1}
+          color="#7B7481"
+          noiseIntensity={1.5}
+          rotation={0}
+        />
+      </div>
+      
       <Navbar 
-        bgColor="#222831" 
+        bgColor="rgba(123, 116, 129, 0.1)" 
         textColor="#DFD0B8" 
-        transparent={false}
+        transparent={true}
         position="relative"
-      />      {/* Hero Section */}
-      <section className="hero" style={{ backgroundColor: '#222831' }}>
-        {/* Interactive Background */}
-        <div className="interactive-bg">
-          <Silk
-            speed={5}
-            scale={1}
-            color="#7B7481"
-            noiseIntensity={1.5}
-            rotation={0}
-          />
-        </div>
-        
+      />
+
+      {/* Hero Section */}
+      <section className="hero" style={{ backgroundColor: 'transparent' }}>        
         <div className="hero-content">
           <h1 style={{ color: '#DFD0B8' }}>Welcome to Tulip</h1>
           <p style={{ color: '#DFD0B8' }}>
