@@ -114,21 +114,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-}
-
-.wavy-bg {
-  width: 100%;
-  height: 100%;
-}
-
-.wavy-bg path {
-  fill: none;
-  stroke-width: 2;
-  transition: transform 0.5s ease;
-}
-
-.home-container:hover .wavy-bg path {
-  transform: translateY(-5px);
+  opacity: 0.6; /* Add subtle opacity to match the theme */
 }
 
 .hero-content {

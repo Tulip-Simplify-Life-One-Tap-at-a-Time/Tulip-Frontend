@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './home.css';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
+import Silk from './Silk';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -13,22 +14,17 @@ const Home = () => {
         textColor="#DFD0B8" 
         transparent={false}
         position="relative"
-      />
-
-      {/* Hero Section */}
+      />      {/* Hero Section */}
       <section className="hero" style={{ backgroundColor: '#222831' }}>
         {/* Interactive Background */}
         <div className="interactive-bg">
-          <svg className="wavy-bg" viewBox="0 0 1200 800" preserveAspectRatio="none">
-            <path
-              d="M0,100 C150,200 350,0 500,100 C650,200 750,300 900,200 C1050,100 1200,300 1200,400 L1200,800 L0,800 Z"
-              stroke="#393E46"
-            />
-            <path
-              d="M0,300 C150,400 350,200 500,300 C650,400 750,500 900,400 C1050,300 1200,500 1200,600 L1200,800 L0,800 Z"
-              stroke="#393E46"
-            />
-          </svg>
+          <Silk
+            speed={5}
+            scale={1}
+            color="#7B7481"
+            noiseIntensity={1.5}
+            rotation={0}
+          />
         </div>
         
         <div className="hero-content">
