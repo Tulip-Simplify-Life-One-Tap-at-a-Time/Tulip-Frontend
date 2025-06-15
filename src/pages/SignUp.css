@@ -11,59 +11,58 @@
 
 .signup-card {
   width: 100%;
-  max-width: 60rem; /* Increased max-width for horizontal layout */
-  padding: 2.5rem;
+  max-width: 64rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   border-radius: 1.25rem;
   background-color: #393E46;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  display: flex; /* Added for horizontal layout */
-  gap: 2rem; /* Space between the two sections */
+  overflow: hidden;
+  min-height: 600px;
 }
 
-/* New: Left and Right Sections of the Card */
+/* Left Section */
 .signup-card-left {
-  flex: 1; /* Takes up available space */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding-right: 2rem; /* Add some padding to the right */
-  border-right: 1px solid rgba(148, 137, 121, 0.2); /* Re-added vertical divider */
+  background: linear-gradient(135deg, #393E46 0%, #2C3136 100%);
+  padding: 3rem;
 }
 
-.signup-card-right {
-  flex: 1; /* Takes up available space */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-
-/* Logo Header */
 .logo-header {
   text-align: center;
-  margin-bottom: 2rem;
 }
 
 .logo {
   width: 5rem;
   height: 5rem;
-  margin: 0 auto 1rem;
+  margin: 0 auto 2rem;
+  display: block;
 }
 
 .welcome-title {
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
   color: #DFD0B8;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
 }
 
 .welcome-subtitle {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: #948979;
-  opacity: 0.8;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* Right Section */
+.signup-card-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  background-color: #393E46;
 }
 
 /* Form Styles */
@@ -87,11 +86,12 @@
   height: 1.25rem;
   color: #948979;
   opacity: 0.7;
+  z-index: 5;
 }
 
 .form-input {
   width: 100%;
-  padding: 0.875rem 1rem 0.875rem 2.75rem; /* Adjusted padding to make space for icon */
+  padding: 0.875rem 1rem; /* Removed left padding since no icons */
   border-radius: 0.75rem;
   border: 1px solid rgba(148, 137, 121, 0.3);
   background-color: rgba(34, 40, 49, 0.5);
@@ -130,6 +130,89 @@
 .toggle-icon {
   width: 1.25rem;
   height: 1.25rem;
+}
+
+/* Validation Styles */
+.form-input.valid {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+.form-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.validation-error {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  margin-left: 0;
+}
+
+/* Email Autocomplete Styles */
+.email-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.email-suggestion {
+  position: absolute;
+  top: 100%;
+  left: 2.5rem;
+  right: 0;
+  background-color: rgba(57, 62, 70, 0.95);
+  border: 1px solid #948979;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  z-index: 10;
+  margin-top: 0.25rem;
+}
+
+.suggestion-text {
+  color: #DFD0B8;
+  font-size: 0.875rem;
+  display: block;
+}
+
+.suggestion-hint {
+  color: rgba(223, 208, 184, 0.6);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Password Strength Indicator */
+.password-strength-indicator {
+  position: absolute;
+  top: 100%;
+  left: 2.5rem;
+  right: 0;
+  background-color: rgba(57, 62, 70, 0.95);
+  border: 1px solid #948979;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  z-index: 10;
+  margin-top: 0.25rem;
+}
+
+.strength-requirements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.requirement {
+  font-size: 0.75rem;
+  transition: color 0.2s;
+}
+
+.requirement.valid {
+  color: #22c55e;
+}
+
+.requirement.invalid {
+  color: #ef4444;
 }
 
 /* Usage Type Radio Buttons */

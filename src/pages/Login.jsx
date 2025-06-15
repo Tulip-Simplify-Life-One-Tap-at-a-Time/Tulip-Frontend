@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, Github } from 'lucide-react';
 import './Login.css';
 import TulipLogo from '../assets/tulip.svg';
+import Navbar from '../components/Navbar';
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -32,10 +33,15 @@ export default function LoginPage() {
   const handleSocialLogin = (provider) => {
     console.log(`Login with ${provider}`);
   };
-
   return (
-    <div className="login-container">
-      <div className="login-card">
+    <>
+      <Navbar 
+        bgColor="#222831" 
+        textColor="#DFD0B8" 
+        transparent={false}
+        position="fixed"
+      />      <div className="login-container" style={{ paddingTop: '80px' }}>
+        <div className="login-card">
         {/* Left Section: Logo and Welcome Text */}
         <div className="login-card-left">
           <div className="logo-container">
@@ -143,9 +149,9 @@ export default function LoginPage() {
                 Sign up
               </a>
             </p>
-          </div>
-        </div>
+          </div>        </div>
       </div>
     </div>
+    </>
   );
 }

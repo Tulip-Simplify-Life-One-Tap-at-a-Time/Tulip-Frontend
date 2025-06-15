@@ -1,6 +1,7 @@
 // Dashboard.js
 import React, { useState } from 'react';
 import './Dashboard.css';
+import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -8,11 +9,17 @@ const Dashboard = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
   return (
-    <div className="dashboard-container">
-      {/* Top Navigation Bar */}
-      <nav className="top-nav-bar">
+    <>
+      <Navbar 
+        bgColor="#1F2933" 
+        textColor="#DFD0B8" 
+        transparent={false}
+        position="fixed"
+      />
+      <div className="dashboard-container" style={{ paddingTop: '80px' }}>
+        {/* Top Navigation Bar */}
+        <nav className="top-nav-bar">
         <button className="sidebar-toggle-button" onClick={toggleSidebar}>
           ☰ {/* Hamburger icon */}
         </button>
@@ -149,10 +156,10 @@ const Dashboard = () => {
                 <a href="/safetravels">Safe Travels HQ</a>
               </div>
             </div>
-          </div>
-        </div>
+          </div>        </div>
       </div>
     </div>
+    </>
   );
 };
 

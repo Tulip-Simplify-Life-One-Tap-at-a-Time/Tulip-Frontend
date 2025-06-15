@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './streaks.css';
+import Navbar from '../components/Navbar';
 
 const Streaks = () => {
   const [habits, setHabits] = useState([]);
@@ -104,11 +105,17 @@ const Streaks = () => {
 
   const { totalCompleted, streakPercentage, topHabits } = getProgressStats();
   const { commonMood, avgSleep, commonWeather } = getMoodSummary();
-
   return (
-    <div className="streaks-container">
-      {/* Floating Elements */}
-      <div className="cloud cloud-1"></div>
+    <>
+      <Navbar 
+        bgColor="#1B1F23" 
+        textColor="#DFD0B8" 
+        transparent={false}
+        position="fixed"
+      />
+      <div className="streaks-container" style={{ paddingTop: '80px' }}>
+        {/* Floating Elements */}
+        <div className="cloud cloud-1"></div>
       <div className="cloud cloud-2"></div>
       <div className="cloud cloud-3"></div>
       <div className="cloud cloud-4"></div>
@@ -244,9 +251,9 @@ const Streaks = () => {
       <div className="streak-card summary-card">
         <p>I was mostly <span className="highlight-text">{commonMood}</span> this week.</p>
         <p>My average sleep was <span className="highlight-text">{avgSleep}</span> hours.</p>
-        <p>This week's weather was mostly <span className="highlight-text">{commonWeather}</span>.</p>
-      </div>
+        <p>This week's weather was mostly <span className="highlight-text">{commonWeather}</span>.</p>      </div>
     </div>
+    </>
   );
 };
 

@@ -1,46 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './home.css';
-import icon from '../assets/tulip.svg';
 import Button from '../components/Button';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   const navigate = useNavigate();
-
   return (
     <div className="home-container" style={{ backgroundColor: '#222831' }}>
-      {/* Top Navigation Bar */}
-      <nav className="navbar" style={{ backgroundColor: '#222831' }}>
-        <div className="logo">
-          <img src={icon} alt="Tulip Icon" className="logo-icon" />
-          <span className="logo-text" style={{ color: '#DFD0B8' }}>Tulip</span>
-        </div>
-        <div className="nav-links">
-          <a href="#" style={{ color: '#DFD0B8' }} className="nav-link">Home</a>
-          <a href="#" style={{ color: '#DFD0B8' }} className="nav-link">About</a>
-          <a href="/Dashboard" style={{ color: '#DFD0B8' }} className="nav-link">Dashboard</a>
-          <a href="#" style={{ color: '#DFD0B8' }} className="nav-link">Demo</a>
-        </div>
-        <div className="nav-actions">
-          <button 
-            className="btn login"
-            style={{ color: '#DFD0B8' }}
-            onClick={() => navigate('/Login')}
-          >
-            Login
-          </button>
-          <button 
-            className="btn get-started"
-            style={{ 
-              backgroundColor: '#DFD0B8',
-              color: '#222831'
-            }}
-            onClick={() => navigate('/SignUp')}
-          >
-            Sign Up
-          </button>
-        </div>
-      </nav>
+      <Navbar 
+        bgColor="#222831" 
+        textColor="#DFD0B8" 
+        transparent={false}
+        position="relative"
+      />
 
       {/* Hero Section */}
       <section className="hero" style={{ backgroundColor: '#222831' }}>

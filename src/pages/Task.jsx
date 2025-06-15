@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import './Task.css';
+import Navbar from '../components/Navbar';
 
 const TaskTamer = () => {
   const [tasks, setTasks] = useState([]);
@@ -101,10 +102,16 @@ const TaskTamer = () => {
       addTask(taskInput);
     }
   };
-
   return (
-    <div className="task-tamer-container">
-      <div className="header-section">
+    <>
+      <Navbar 
+        bgColor="#222831" 
+        textColor="#DFD0B8" 
+        transparent={false}
+        position="fixed"
+      />
+      <div className="task-tamer-container" style={{ paddingTop: '80px' }}>
+        <div className="header-section">
         <div className="date-box">
           <div className="day">{currentDate.day}</div>
           <div className="date-circle">{currentDate.date}</div>
@@ -229,9 +236,9 @@ const TaskTamer = () => {
               </button>
             </div>
           </div>
-        </div>
-      )}
+        </div>      )}
     </div>
+    </>
   );
 };
 

@@ -1,0 +1,141 @@
+/* Tulip Navbar Component Styles */
+.tulip-navbar {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tulip-navbar-content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.tulip-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+}
+
+.tulip-logo-icon {
+  height: 2rem;
+  width: auto;
+}
+
+.tulip-logo-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tulip-nav-links {
+  display: flex;
+  gap: 2rem;
+  justify-self: center;
+}
+
+.tulip-nav-link {
+  transition: all 0.3s ease;
+  position: relative;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tulip-nav-link:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.tulip-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.tulip-nav-link:hover::after {
+  width: 100%;
+}
+
+.tulip-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-self: end;
+}
+
+.tulip-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.9rem;
+  background: transparent;
+}
+
+.tulip-btn-login {
+  border: 1px solid currentColor;
+}
+
+.tulip-btn-login:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.tulip-btn-signup {
+  border: none;
+  font-weight: 600;
+}
+
+.tulip-btn-signup:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tulip-navbar-content {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+
+  .tulip-nav-links {
+    display: none;
+  }
+
+  .tulip-logo {
+    justify-self: start;
+  }
+
+  .tulip-nav-actions {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 480px) {
+  .tulip-navbar-content {
+    padding: 1rem;
+  }
+
+  .tulip-nav-actions {
+    gap: 0.5rem;
+  }
+
+  .tulip-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+}
