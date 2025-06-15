@@ -7,37 +7,6 @@ body {
   padding: 0;
   background-color: #1F2933; /* Primary Background: Charcoal Blue */
   color: #DFD0B8; /* Text (Primary): Warm Beige */
-  overflow-x: hidden; /* Prevent horizontal scroll due to sidebar animation */
-}
-
-/* --- Layout Zones --- */
-
-.top-nav-bar {
-  background-color: #1F2933; /* Top Nav Bar BG: Charcoal Blue */
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Distribute items with space between them */
-  border-bottom: 1px solid #3C4A52; /* Soft contrast separators */
-  position: sticky; /* Keep nav bar at the top */
-  top: 0;
-  z-index: 1000; /* Ensure it stays above other content */
-}
-
-.sidebar-toggle-button {
-  background: none;
-  border: none;
-  color: #DFD0B8;
-  font-size: 2rem;
-  cursor: pointer;
-  margin-right: 20px; /* Keep some space to the right of the button */
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.sidebar-toggle-button:hover {
-  background-color: #3C4A52;
 }
 
 .dashboard-heading {
@@ -45,115 +14,15 @@ body {
   font-weight: 700;
   color: #DFD0B8; /* Text (Primary): Warm Beige */
   margin: 0; /* Remove default margin */
-  /* Removed flex-grow and text-align: center as justify-content handles positioning now */
+  text-align: center; /* Center the heading */
+  margin-bottom: 30px; /* Add spacing below the heading */
 }
-
-/* Home Button Styling */
-.home-button {
-  text-decoration: none;
-  color: #DFD0B8; /* Primary text color for visibility */
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 10px 15px;
-  border: 1px solid #948979; /* Accent color for border */
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  margin-left: 20px; /* Keep some space to the left of the button */
-}
-
-.home-button:hover {
-  background-color: #948979; /* Accent color on hover */
-  color: #1F2933; /* Darker text on hover */
-  border-color: #DFD0B8; /* Primary text color for border on hover */
-}
-
 
 .dashboard-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensures it takes full viewport height */
-}
-
-.main-content-wrapper {
-  display: flex;
-  flex-grow: 1;
-}
-
-/* --- Sidebar Styling --- */
-.sidebar {
-  background-color: #374151; /* Secondary Background: Dark Slate */
-  width: 250px;
-  min-width: 250px; /* Prevent it from shrinking */
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(-100%); /* Start hidden */
-  position: fixed; /* Fixed position to slide in */
-  height: 100%; /* Full height */
-  z-index: 999; /* Below top nav, above main content */
-  top: 0; /* Align to the top of the viewport */
-  left: 0; /* Align to the left of the viewport */
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar.open {
-  transform: translateX(0); /* Slide in */
-}
-
-.sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #3C4A52;
-}
-
-.sidebar-header h2 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #DFD0B8;
-}
-
-.sidebar-close-button {
-  background: none;
-  border: none;
-  color: #DFD0B8;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.sidebar-close-button:hover {
-  background-color: #3C4A52;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-nav li {
-  margin-bottom: 15px;
-}
-
-.sidebar-nav a {
-  text-decoration: none;
-  color: #B4A890;
-  font-size: 1.1rem;
-  display: block;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.sidebar-nav a:hover {
-  background-color: #2C353D;
-  color: #DFD0B8;
+  padding-top: 80px; /* Add padding for fixed Navbar */
 }
 
 /* --- Main Dashboard Content Styling --- */
@@ -166,11 +35,6 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   justify-content: center;
-  transition: margin-left 0.3s ease-in-out; /* Smooth shift when sidebar opens */
-}
-
-.dashboard-main.shifted {
-  margin-left: 250px; /* Shift content when sidebar is open */
 }
 
 .category {
@@ -259,12 +123,6 @@ body {
 .travel { border-left: 5px solid #948979; }
 
 /* --- Media Queries for Responsiveness --- */
-@media (max-width: 1200px) {
-  .dashboard-main.shifted {
-    margin-left: 0; /* Remove shift on smaller screens to prevent content overflow */
-  }
-}
-
 @media (max-width: 992px) {
   .category {
     flex: 1 1 calc(50% - 30px); /* Two columns on medium screens, adjusted gap */
@@ -302,13 +160,8 @@ body {
     max-width: 250px;
   }
 
-  .sidebar {
-    width: 200px; /* Adjust sidebar width for smaller screens */
-    min-width: 200px;
-  }
-
-  .dashboard-main.shifted {
-    margin-left: 0; /* Ensure content is not shifted */
+  .dashboard-container {
+    padding-top: 70px; /* Reduced padding for mobile Navbar */
   }
 }
 
@@ -330,12 +183,7 @@ body {
     font-size: 0.9rem;
   }
 
-  .sidebar-toggle-button {
-    font-size: 1.5rem; /* Smaller button on very small screens */
-  }
-
-  .home-button {
-    font-size: 0.9rem;
-    padding: 8px 12px;
+  .dashboard-container {
+    padding-top: 60px; /* Further reduced padding for very small screens */
   }
 }

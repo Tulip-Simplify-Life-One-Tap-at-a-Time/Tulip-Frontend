@@ -14,8 +14,8 @@ const Dashboard = () => {
       />
       <div className="dashboard-container" style={{ paddingTop: '80px' }}>        {/* Top Navigation Bar */}
         <nav className="top-nav-bar">
-        <h1 className="dashboard-heading">My Dashboard</h1>
-      </nav>      <div className="main-content-wrapper">
+        <h1 className="dashboard-heading" style={{ textAlign: 'center' }}>My Dashboard</h1>
+      </nav><div className="main-content-wrapper">
         <div className="dashboard-main">
           {/* Productivity & Organization */}
           <div className="category productivity" id="productivity">
