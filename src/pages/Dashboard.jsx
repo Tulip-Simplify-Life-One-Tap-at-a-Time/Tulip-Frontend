@@ -1,9 +1,106 @@
 // Dashboard.js
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Dashboard.css';
 import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const cardRefs = useRef([]);
+  
+  const categories = [
+    {
+      id: 'productivity',
+      title: '🚀 Productivity & Organization',
+      subcategories: [
+        { name: 'Task Tamer', href: '/task' },
+        { name: 'Streaks Savvy', href: '/streaks' },
+        { name: 'Time Wizardry', href: '/timewiz' },
+        { name: 'Dream Sync', href: '/dream' }
+      ]
+    },
+    {
+      id: 'finance',
+      title: '� Finance & Money Management',
+      subcategories: [
+        { name: 'Money Mojo', href: '/mojo' },
+        { name: 'Cash Compass', href: '/cash' },
+        { name: 'Due Date Defender', href: '/duedate' }
+      ]
+    },
+    {
+      id: 'career',
+      title: '📈 Career & Professional Growth',
+      subcategories: [
+        { name: 'ResuMagic', href: '/resu' },
+        { name: 'Ace the Space', href: '/aceit' },
+        { name: 'Academia Whiteboard', href: '/acawhite' },
+        { name: 'Pause and Play', href: '/pause' }
+      ]
+    },
+    {
+      id: 'health',
+      title: '🏋️ Health & Wellness',
+      subcategories: [
+        { name: 'Snack Smarts', href: '/snack' },
+        { name: 'Fit in a Flash', href: '/fit' },
+        { name: 'Mind Spa', href: '/mindspa' }
+      ]
+    },
+    {
+      id: 'home',
+      title: '🏠 Home & Life Skills',
+      subcategories: [
+        { name: 'Zen Den', href: '/zenden' },
+        { name: 'Fix-It Fast', href: '/fixit' },
+        { name: 'Laundry Lab', href: '/laundry' },
+        { name: 'Survival Mode', href: '/survival' }
+      ]
+    },
+    {
+      id: 'travel',
+      title: '✈️ Travel & Transportation',
+      subcategories: [
+        { name: 'Pack Like a Pro', href: '/packpro' },
+        { name: 'Wander Wise', href: '/wanderwise' },
+        { name: 'Commute Companion', href: '/commute' },
+        { name: 'Safe Travels HQ', href: '/safetravels' }
+      ]
+    }
+  ];
+
+  const scrollToCategory = (index) => {
+    setActiveCategory(index);
+    if (cardRefs.current[index]) {
+      cardRefs.current[index].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const cards = cardRefs.current;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      cards.forEach((card, index) => {
+        if (card) {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.top + rect.height / 2;
+          
+          if (cardCenter >= 0 && cardCenter <= windowHeight) {
+            setActiveCategory(index);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <Navbar 
@@ -12,120 +109,59 @@ const Dashboard = () => {
         transparent={false}
         position="fixed"
       />
-      <div className="dashboard-container" style={{ paddingTop: '80px' }}>        {/* Top Navigation Bar */}
-        <nav className="top-nav-bar">
-        <h1 className="dashboard-heading" style={{ textAlign: 'center' }}>My Dashboard</h1>
-      </nav><div className="main-content-wrapper">
-        <div className="dashboard-main">
-          {/* Productivity & Organization */}
-          <div className="category productivity" id="productivity">
-            <h2>🚀 Productivity & Organization</h2>
-            <div className="subcategories">
-              <div className="card">
-                <a href="/task">Task Tamer</a>
-              </div>
-              <div className="card">
-                <a href="/streaks">Streaks Savvy</a>
-              </div>
-              <div className="card">
-                <a href="/timewiz">Time Wizardry</a>
-              </div>
-              <div className="card">
-                <a href="/dream">Dream Sync</a>
-              </div>
-            </div>
+      
+      <div className="dashboard-container" style={{ paddingTop: '80px' }}>        {/* Side Navigation */}
+        <div className={`side-navigation ${sidebarCollapsed ? 'collapsed' : ''}`}>
+          <div className="sidebar-header">
+            <h3>Categories</h3>
+            <button 
+              className="collapse-btn"
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            >
+              {sidebarCollapsed ? '→' : '←'}
+            </button>
           </div>
+          <ul className="nav-list">
+            {categories.map((category, index) => (
+              <li 
+                key={category.id}
+                className={`nav-item ${activeCategory === index ? 'active' : ''}`}
+                onClick={() => scrollToCategory(index)}
+                title={category.title}
+              >
+                {sidebarCollapsed ? category.title.split(' ')[0] : category.title}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Finance & Money Management */}
-          <div className="category finance" id="finance">
-            <h2>💰 Finance & Money Management</h2>
-            <div className="subcategories">
-              <div className="card">
-                <a href="/mojo">Money Mojo</a>
+        {/* Main Content */}
+        <div className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+          <h1 className="dashboard-heading">My Dashboard</h1>
+          
+          <div className="cards-container">
+            {categories.map((category, index) => (
+              <div 
+                key={category.id}
+                ref={el => cardRefs.current[index] = el}
+                className={`category-card ${category.id} ${
+                  activeCategory === index ? 'active' : 
+                  activeCategory > index ? 'fallen' : 'upcoming'
+                }`}
+              >
+                <h2>{category.title}</h2>
+                <div className="subcategories">
+                  {category.subcategories.map((sub, subIndex) => (
+                    <div key={subIndex} className="card">
+                      <a href={sub.href}>{sub.name}</a>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="card">
-                <a href="/cash">Cash Compass</a>
-              </div>
-              <div className="card">
-                <a href="/duedate">Due Date Defender</a>
-              </div>
-            </div>
+            ))}
           </div>
-
-          {/* Career & Professional Growth */}
-          <div className="category career" id="career">
-            <h2>📈 Career & Professional Growth</h2>
-            <div className="subcategories">
-              <div className="card">
-                <a href="/resu">ResuMagic</a>
-              </div>
-              <div className="card">
-                <a href="/aceit">Ace the Space</a>
-              </div>
-              <div className="card">
-                <a href="/acawhite">Academia Whiteboard</a>
-              </div>
-              <div className="card">
-                <a href="/pause">Pause and Play</a>
-              </div>
-            </div>
-          </div>
-
-          {/* Health & Wellness */}
-          <div className="category health" id="health">
-            <h2>🏋️ Health & Wellness</h2>
-            <div className="subcategories">
-              <div className="card">
-                <a href="/snack">Snack Smarts</a>
-              </div>
-              <div className="card">
-                <a href="/fit">Fit in a Flash</a>
-              </div>
-              <div className="card">
-                <a href="/mindspa">Mind Spa</a>
-              </div>
-            </div>
-          </div>
-
-          {/* Home & Life Skills */}
-          <div className="category home" id="home">
-            <h2>🏠 Home & Life Skills</h2>
-            <div className="subcategories">
-              <div className="card">
-                <a href="/zenden">Zen Den</a>
-              </div>
-              <div className="card">
-                <a href="/fixit">Fix-It Fast</a>
-              </div>
-              <div className="card">
-                <a href="/laundry">Laundry Lab</a>
-              </div>
-              <div className="card">
-                <a href="/survival">Survival Mode</a>
-              </div>
-            </div>
-          </div>
-
-          {/* Travel & Transportation */}
-          <div className="category travel" id="travel">
-            <h2>✈️ Travel & Transportation</h2>
-            <div className="subcategories">
-              <div className="card">
-                <a href="/packpro">Pack Like a Pro</a>
-              </div>
-              <div className="card">
-                <a href="/wanderwise">Wander Wise</a>
-              </div>
-              <div className="card">
-                <a href="/commute">Commute Companion</a>
-              </div>
-              <div className="card">
-                <a href="/safetravels">Safe Travels HQ</a>
-              </div>
-            </div>
-          </div>        </div>
+        </div>
       </div>
-    </div>
     </>
   );
 };

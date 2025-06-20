@@ -9,181 +9,386 @@ body {
   color: #DFD0B8; /* Text (Primary): Warm Beige */
 }
 
-.dashboard-heading {
-  font-size: 2.5rem; /* Headings: 1.25rem+, bold */
-  font-weight: 700;
-  color: #DFD0B8; /* Text (Primary): Warm Beige */
-  margin: 0; /* Remove default margin */
-  text-align: center; /* Center the heading */
-  margin-bottom: 30px; /* Add spacing below the heading */
-}
-
 .dashboard-container {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensures it takes full viewport height */
-  padding-top: 80px; /* Add padding for fixed Navbar */
+  min-height: 100vh;
+  background-color: #1F2933;
 }
 
-/* --- Main Dashboard Content Styling --- */
-.dashboard-main {
-  flex-grow: 1; /* Takes remaining space */
-  padding: 30px;
+/* Side Navigation */
+.side-navigation {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 280px;
+  height: calc(100vh - 80px);
+  background-color: #374151; /* Secondary Background: Dark Slate */
+  border-right: 1px solid #3C4A52;
+  padding: 0;
+  overflow-y: auto;
+  z-index: 100;
+  transition: width 0.3s ease;
+}
+
+.side-navigation.collapsed {
+  width: 80px;
+}
+
+.sidebar-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 30px 20px 30px;
+  border-bottom: 2px solid #948979;
+  margin-bottom: 20px;
+}
+
+.side-navigation.collapsed .sidebar-header {
+  padding: 30px 10px 20px 10px;
   justify-content: center;
 }
 
-.category {
-  background-color: #374151; /* Secondary Background: Dark Slate for cards/sidebars */
-  border-radius: 10px;
-  padding: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid #3C4A52; /* Border Color: Soft contrast separators */
-  flex: 1 1 calc(50% - 40px); /* Two columns layout: Adjust based on desired number of columns and gap */
-  min-width: 300px; /* Minimum width for categories before wrapping */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  display: flex; /* Use flexbox for category content */
-  flex-direction: column; /* Stack h2 and subcategories vertically */
-  align-items: center; /* Center content horizontally within category */
-  text-align: center; /* Center text within category */
+.side-navigation h3 {
+  color: #DFD0B8;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  transition: opacity 0.3s ease;
 }
 
-.category h2 {
-  margin-top: 0;
-  font-size: 1.8rem; /* Headings: 1.25rem+, bold */
+.side-navigation.collapsed h3 {
+  opacity: 0;
+  display: none;
+}
+
+.collapse-btn {
+  background: none;
+  border: 1px solid #948979;
+  color: #DFD0B8;
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapse-btn:hover {
+  background-color: #948979;
+  color: #1F2933;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #B4A890;
+  font-weight: 500;
+  border-left: 4px solid transparent;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.side-navigation.collapsed .nav-item {
+  padding: 15px 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.nav-item:hover {
+  background-color: #2C353D;
+  color: #DFD0B8;
+  border-left-color: #948979;
+}
+
+.nav-item.active {
+  background-color: #2C353D;
+  color: #DFD0B8;
+  border-left-color: #948979;
   font-weight: 600;
-  color: #DFD0B8; /* Text (Primary): Warm Beige */
-  margin-bottom: 20px;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 280px;
+  flex: 1;
+  padding: 30px 40px;
+  min-height: calc(100vh - 80px);
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 80px;
+}
+
+.dashboard-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #DFD0B8;
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+
+/* Cards Container */
+.cards-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Category Cards */
+.category-card {
+  background-color: #374151;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid #3C4A52;
+  transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-origin: center center;
+  opacity: 1;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-card.active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  z-index: 10;
+}
+
+.category-card.fallen {
+  transform: translateY(100px) scale(0.95) rotateX(15deg);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.category-card.upcoming {
+  transform: translateY(-50px) scale(0.95);
+  opacity: 0.7;
+  z-index: 5;
+}
+
+.category-card h2 {
+  margin: 0 0 30px 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #DFD0B8;
+  text-align: center;
 }
 
 .subcategories {
   display: flex;
-  justify-content: center; /* Center cards within subcategories */
-  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
   gap: 20px;
-  padding: 10px 0;
-  width: 100%; /* Ensure subcategories take full width of their parent */
+  width: 100%;
+  max-width: 800px;
+  padding: 20px 0;
 }
 
 .card {
-  background-color: #2C353D; /* Input Background (used for cards now): Slight contrast */
-  border-radius: 10px;
-  padding: 20px;
-  min-width: 220px;
-  max-width: 250px; /* Limit max width for better appearance */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Shadow for depth */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: #2C353D;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   text-align: center;
-  border: 1px solid #3C4A52; /* Border Color: Soft contrast separators */
+  border: 1px solid #3C4A52;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 calc(50% - 10px);
+  min-width: 200px;
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Slight lift */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  border-color: #948979; /* Accent Color: Muted Taupe on hover */
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  border-color: #948979;
 }
 
 .card a {
   text-decoration: none;
-  color: #B4A890; /* Text (Secondary): Soft Taupe for general text */
-  font-size: 1.1rem; /* Body Text: 1rem */
+  color: #B4A890;
+  font-size: 1.1rem;
   font-weight: 500;
-  display: block; /* Make the entire card clickable via the link */
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card a:hover {
-  color: #DFD0B8; /* Link Hover: Underlined or bold on hover (Text Primary) */
-  text-decoration: underline;
+  color: #DFD0B8;
+  text-decoration: none;
 }
 
-/* --- Scrollbar Styling for Subcategories --- */
-.subcategories::-webkit-scrollbar {
-  height: 8px;
+/* Category-specific borders */
+.productivity { border-left: 6px solid #948979; }
+.finance { border-left: 6px solid #948979; }
+.career { border-left: 6px solid #948979; }
+.health { border-left: 6px solid #948979; }
+.home { border-left: 6px solid #948979; }
+.travel { border-left: 6px solid #948979; }
+
+/* Scrollbar Styling */
+.side-navigation::-webkit-scrollbar {
+  width: 6px;
 }
 
-.subcategories::-webkit-scrollbar-thumb {
-  background: #948979; /* Accent Color: Muted Taupe */
-  border-radius: 4px;
+.side-navigation::-webkit-scrollbar-thumb {
+  background: #948979;
+  border-radius: 3px;
 }
 
-.subcategories::-webkit-scrollbar-track {
-  background: #374151; /* Secondary Background: Dark Slate */
+.side-navigation::-webkit-scrollbar-track {
+  background: #374151;
 }
 
-/* --- Category Border Colors (using Accent Color for consistency) --- */
-.productivity { border-left: 5px solid #948979; }
-.finance { border-left: 5px solid #948979; }
-.career { border-left: 5px solid #948979; }
-.health { border-left: 5px solid #948979; }
-.home { border-left: 5px solid #948979; }
-.travel { border-left: 5px solid #948979; }
-
-/* --- Media Queries for Responsiveness --- */
-@media (max-width: 992px) {
-  .category {
-    flex: 1 1 calc(50% - 30px); /* Two columns on medium screens, adjusted gap */
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .side-navigation {
+    width: 250px;
+  }
+  
+  .side-navigation.collapsed {
+    width: 70px;
+  }
+  
+  .main-content {
+    margin-left: 250px;
+    padding: 20px 30px;
+  }
+  
+  .main-content.sidebar-collapsed {
+    margin-left: 70px;
+  }
+    .subcategories {
+    gap: 15px;
+  }
+  
+  .card {
+    flex: 1 1 calc(50% - 7.5px);
+    min-width: 180px;
   }
 }
 
 @media (max-width: 768px) {
-  .dashboard-main {
-    padding: 20px;
-    gap: 20px;
+  .side-navigation {
+    position: fixed;
+    left: -280px;
+    width: 280px;
+    transition: left 0.3s ease;
+    z-index: 1000;
   }
-
+  
+  .side-navigation.collapsed {
+    left: -280px;
+    width: 280px;
+  }
+  
+  .side-navigation.open {
+    left: 0;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+  
+  .main-content.sidebar-collapsed {
+    margin-left: 0;
+  }
+  
   .dashboard-heading {
     font-size: 2rem;
+    margin-bottom: 30px;
   }
-
-  .category {
-    flex: 1 1 100%; /* Single column on small screens */
-    min-width: unset; /* Remove min-width for full flexibility */
+  
+  .category-card {
+    padding: 20px;
+    min-height: 300px;
+    margin-bottom: 20px;
   }
-
-  .category h2 {
-    font-size: 1.5rem;
+  
+  .category-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
   }
-
-  .subcategories {
-    flex-direction: row; /* Keep cards in a row for better flow */
-    overflow-x: auto; /* Enable horizontal scrolling for cards if they exceed container */
-    justify-content: flex-start; /* Align cards to the start for scrolling */
-    padding-bottom: 10px; /* Add some padding for the scrollbar */
+    .subcategories {
+    flex-direction: column;
+    gap: 15px;
   }
-
+  
   .card {
-    min-width: 200px; /* Ensure cards are still readable */
-    max-width: 250px;
+    flex: 1;
+    min-width: unset;
   }
-
-  .dashboard-container {
-    padding-top: 70px; /* Reduced padding for mobile Navbar */
+  
+  .card {
+    padding: 20px;
+    min-height: 60px;
+  }
+  
+  .card a {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
+  .main-content {
+    padding: 15px;
+  }
+  
   .dashboard-heading {
     font-size: 1.8rem;
   }
-
-  .category {
+  
+  .category-card {
     padding: 15px;
+    min-height: 250px;
   }
-
-  .category h2 {
-    font-size: 1.3rem;
+  
+  .category-card h2 {
+    font-size: 1.4rem;
   }
-
+  
   .card {
     padding: 15px;
+    min-height: 50px;
+  }
+  
+  .card a {
     font-size: 0.9rem;
   }
-
-  .dashboard-container {
-    padding-top: 60px; /* Further reduced padding for very small screens */
+  
+  .nav-item {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .sidebar-header {
+    padding: 20px 20px 15px 20px;
+  }
+  
+  .side-navigation h3 {
+    font-size: 1.2rem;
   }
 }
