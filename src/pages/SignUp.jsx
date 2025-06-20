@@ -19,10 +19,8 @@ const AppleIcon = () => (
   </svg>
 );
 
-export default function SignUpPage() {
-  const [formData, setFormData] = useState({
+export default function SignUpPage() {  const [formData, setFormData] = useState({
     fullName: '',
-    age: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -70,10 +68,8 @@ export default function SignUpPage() {
         {/* Right Section: Sign Up Form and Social Login */}
         <div className="signup-card-right">
           {/* Sign Up Form */}
-          <form className="signup-form" onSubmit={handleSubmit}>
-            {/* Full Name */}
+          <form className="signup-form" onSubmit={handleSubmit}>            {/* Full Name */}
             <div className="input-group">
-              <User className="input-icon" />
               <input
                 type="text"
                 name="fullName"
@@ -82,28 +78,10 @@ export default function SignUpPage() {
                 placeholder="Full Name"
                 className="form-input"
                 required
-              />
-            </div>
-
-            {/* Age */}
-            <div className="input-group">
-              <Calendar className="input-icon" />
-              <input
-                type="number"
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                placeholder="Age"
-                min="13"
-                max="120"
-                className="form-input"
-                required
-              />
-            </div>
+              />            </div>
 
             {/* Email */}
             <div className="input-group">
-              <Mail className="input-icon" />
               <input
                 type="email"
                 name="email"
@@ -113,11 +91,8 @@ export default function SignUpPage() {
                 className="form-input"
                 required
               />
-            </div>
-
-            {/* Password */}
+            </div>            {/* Password */}
             <div className="input-group">
-              <Lock className="input-icon" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -134,11 +109,8 @@ export default function SignUpPage() {
               >
                 {showPassword ? <Lock className="toggle-icon" /> : <Lock className="toggle-icon" />}
               </button>
-            </div>
-
-            {/* Confirm Password */}
+            </div>            {/* Confirm Password */}
             <div className="input-group">
-              <Lock className="input-icon" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="confirmPassword"
